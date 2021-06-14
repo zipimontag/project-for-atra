@@ -1,7 +1,11 @@
 import React,{createRef} from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../Store/action';
-
+function mapStateToProps(state) {
+    return {
+        users: state.users
+    }
+}
 const mapDispatchToProps = (dispatch) => ({
     setName: (name) => dispatch(actions.setName(name)),
     setAge: (age) => dispatch(actions.setAge(age)),
@@ -10,8 +14,8 @@ const mapDispatchToProps = (dispatch) => ({
     setPhone: (phone) => dispatch(actions.setPhone(phone))
 })
 
-export default connect(mapDispatchToProps)(function FormLogin(props) {
-   const {}=props
+export default connect(mapStateToProps, mapDispatchToProps)(function FormLogin(props) {
+   const {setName,setAge,setCity,setEmail,setPhone}=props
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const reftoFullName = createRef();
